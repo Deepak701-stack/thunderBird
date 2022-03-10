@@ -514,31 +514,218 @@ class HomePage extends StatelessWidget {
                 itemCount: 10,
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemBuilder: (context,index) => Container(
-                  margin: EdgeInsets.all(2),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16),
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          height: 80,
-                          child: ListView(
-                            shrinkWrap: true,
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              PopularList(),
-                            ],
-                          ),
-                        ),
-                      ],
+                itemBuilder: (context,index) {
+                  return Container(
+                    margin: EdgeInsets.all(2),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 16, right: 16),
+                      child: Row(
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context)=>ExerciseActivity(index)));
+                            },
+                            child:  Container(
+                              height: 80,
+                              child: ListView(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  PopularList(),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                }
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class ExerciseActivity extends StatelessWidget{
+  late int title;
+
+  ExerciseActivity(this.title);
+
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: const Color(0xff000000),
+      body: SingleChildScrollView(
+        child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      "Exercise name here",
+                      style:
+                      TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const <Widget>[
+                    Text("Easy",
+                      style: TextStyle(
+                        color: Colors.white,
+                        backgroundColor: Color.fromRGBO(3,190,145,1),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Min Capital Required : 1L",
+                      style: TextStyle(
+                        color: Colors.white,
+                        backgroundColor: Color.fromRGBO(44,44,44,1),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      "Time Frame : 5min\nType of Trades : Intraday\nGet 0.2% returns to win the exercise",
+                      style:
+                      TextStyle(
+                          color: Color(0xffffffff),
+                          height: 3,
+                          fontSize: 15,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    IconButton(
+                      alignment: Alignment.topLeft,
+                      icon: Image.asset(
+                        "assets/tcs.png",
+                        width: 28,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const <Widget>[
+                    Text("Easy",
+                      style: TextStyle(
+                        color: Color.fromRGBO(3,190,145,1),
+                        backgroundColor: Color.fromRGBO(44,44,44,1),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Min Capital Required : 1L",
+                      style: TextStyle(
+                        color: Color.fromRGBO(3,190,145,1),
+                        backgroundColor: Color.fromRGBO(44,44,44,1),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Container(
+                  width: double.infinity,
+                  child: TextButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                      MaterialStateProperty.all<Color>(Color.fromRGBO(3,190,145,1)),
+                      padding: MaterialStateProperty.all<EdgeInsets>(
+                          EdgeInsets.all(10)),
+                    ),
+                    child: Text(
+                      "Start",
+                      style: TextStyle(
+                        height: 1.0,
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    onPressed: () => {print("start")},
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      "Market Watch",
+                      style:
+                      TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const <Widget>[
+                    Text(
+                      "Market Watch",
+                      style:
+                      TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+      )
     );
   }
 }
